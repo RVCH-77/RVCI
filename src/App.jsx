@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import appLogo from '/favicon.svg'
 import PWABadge from './PWABadge.jsx'
 import './App.css'
 
@@ -46,33 +44,8 @@ function Productos({ nombre, precio, imagen }) {
 
 function ContadorCarga({ segundos }) {
   return (
-    <div className="container text-center my-5 py-4">
-      <div
-        className="card shadow-lg p-4 mx-auto border-warning"
-      >
-        <div className="card-body">
-          <div
-            className="spinner-border text-warning mb-3"
-            
-            role="status"
-          >
-            <span className="visually-hidden">Cargando...</span>
-          </div>
-          <h3 className="card-title fw-bold text-dark mb-2">Cargando Catálogo</h3>
-          <p className="text-muted mb-3">
-            El catálogo de productos se mostrará en:
-          </p>
-          <div
-            className="display-1 fw-bold text-warning my-2"
-           
-          >
-            {segundos}
-          </div>
-          <span className="badge bg-warning text-dark fs-6 px-3 py-2 mt-2">
-            
-          </span>
-        </div>
-      </div>
+    <div className="text-center my-5">
+      <h2 className="fw-bold">Cargando en: {segundos}</h2>
     </div>
   );
 }
@@ -104,23 +77,20 @@ function Estante() {
 
 function App() {
   const [contador, setContador] = useState(3);
-  const [cargado, setCargado] = useState(false);
 
   useEffect(() => {
     if (contador > 0) {
       const timer = setTimeout(() => {
-        setContador(prev => prev - 1);
+        setContador(contador - 1);
       }, 1000);
       return () => clearTimeout(timer);
-    } else {
-      setCargado(true);
     }
   }, [contador]);
 
   return (
     <div>
       <Encabezado />
-      {!cargado ? (
+      {contador > 0 ? (
         <ContadorCarga segundos={contador} />
       ) : (
         <Estante />
