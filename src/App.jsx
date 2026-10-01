@@ -50,6 +50,16 @@ function ContadorCarga({ segundos }) {
   );
 }
 
+function contador(){
+
+
+  
+}
+
+
+
+
+
 function Estante() {
   const productos = [
     { id: 1, nombre: "sabritas avanero", precio: 20, imagen: "./img/sabritas-avanero.webp" },
